@@ -1,0 +1,35 @@
+<h5>Cell Editing</h5>
+<p-table [value]="flights" (onEditInit)="onEditInit($event)" (onEditCancel)="onEditCancel()">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Flight</th>
+            <th>From</th>
+            <th>To</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-flight>
+        <tr>
+            <td>{{flight.flightNumber}}</td>
+            <td pEditableColumn>
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input pInputText type="text" [(ngModel)]="flight.origin" required>
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{flight.origin}}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+            <td pEditableColumn>
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input pInputText type="text" [(ngModel)]="flight.destination">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{flight.destination}}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>
